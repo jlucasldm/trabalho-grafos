@@ -21,8 +21,10 @@ def copWin(vertices, arestas, cop, robber):
         neighbors.update({i:neighbors_i})
     print(neighbors)
     
+    # implementação do teorema 2.1
     for i in range(n - 1):
         for j in range(i + 1, n):
+            # criando as listas de vizinhos para os vértices vi e vj
             neighbors_i = neighbors[i]
             neighbors_j = neighbors[j]
 
@@ -31,6 +33,9 @@ def copWin(vertices, arestas, cop, robber):
             if i in neighbors_j:
                 neighbors_j.remove(i)
             
+            #checagem de condição do teorema
+            print("neighbors[i = ", i, "]: ", neighbors_i)
+            print("neighbors[j = ", j, "]: ", neighbors_j, "\n")
             if not (all(x in neighbors_j for x in neighbors_i)):
                 flag = 0
                 break
@@ -38,3 +43,5 @@ def copWin(vertices, arestas, cop, robber):
     return flag
 
 print(copWin([0,1,2,3], [(0,1),(1,2),(2,3),(3,0)], 1, 3))
+print("\n")
+print(copWin([0,1,2], [(0,1),(1,2),(2,0)], 1, 3))
