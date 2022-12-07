@@ -10,6 +10,7 @@ from queue import Queue
 def bruteForce(vertices, arestas, cop, robber):
     n = len(vertices)
     neighbors = {}
+    turn = 1
 
     # criando dicionário contendo o conjunto de vértices vizinhos para
     # todo vértice vi do grafo
@@ -23,35 +24,49 @@ def bruteForce(vertices, arestas, cop, robber):
                     neighbors_i.append(arestas[j][0])
         neighbors_i.sort()
         neighbors.update({i:neighbors_i})
-    print(neighbors)
 
     while cop != robber:
+        print("\n## turno ", turn ,"##")
+        print("cop [", cop, "]")
+        print("robber [", robber, "]")
+        print("")
         neighbors_cop = neighbors[cop]
-        print(neighbors_cop)
+        print("vizinhos de cop(", cop, "): ", neighbors_cop)
         distance_to_robber = distances(neighbors, robber)
-        print(distance_to_robber)
+        print("distancia dos vizinhos a robber: ", distance_to_robber)
         move_cop = 999999999
+        before_cop = cop
         
         #cop move
+        print("movimento de cop [", cop, "]")
         for i in neighbors_cop:
             if distance_to_robber[i] <= move_cop:
                 move_cop = distance_to_robber[i]
                 cop = i
 
+        print("cop [", before_cop,"] -> [", cop, "]")
         if cop == robber:
+            print("cop [", cop, "] pegou robebr [", robber, "] no turno ", turn)
             return 1
 
         neighbors_robber = neighbors[robber]
-        print(neighbors_robber)
+        print("vizinhos de robber(", robber, "): ",neighbors_robber)
         distance_to_cop = distances(neighbors, cop)
-        print(distance_to_cop)
+        print("distancia dos vizinhos a cop: ", distance_to_cop)
         move_robber = 0
+        before_robber = robber
 
         #robber move
+        print("movimento de robber [", robber, "]")
         for i in neighbors_robber:
             if distance_to_cop[i] >= move_robber:
                 move_robber = distance_to_cop[i]
                 robber = i
+        print("robber [", before_robber,"] -> [", robber, "]")
+
+        turn += 1
+    
+    print("cop [", cop, "] pegou robebr [", robber, "] no turno ", turn)
     return 1
 
 def distances(neighbors, source):
