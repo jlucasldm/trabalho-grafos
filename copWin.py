@@ -74,10 +74,7 @@ def copWin(vertices, arestas):
     print(neighbors)
 
     # implementação do teorema 2.1
-    if NeighbourIntersection(0, vertices, neighbors, n):
-        print("Return True")
-    else:
-        print("Return false")
+    PermutationWrapper(vertices,[],len(vertices),arestas)
 
 PermutationWrapper([0, 1, 2, 3], [], 4, [(0, 1), (0, 2),
                    (1, 2), (2, 3), (3, 0), (3, 1)])
