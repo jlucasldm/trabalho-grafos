@@ -2,6 +2,7 @@
 # arestas   := lista de tuplas sinalizando conexão estre os vértices
 # cop       := inteiro sinalizando um vértice
 # robber    := inteiro sinalizando um vértice
+
 def copWin(vertices, arestas, cop, robber):
     n = len(vertices)
     neighbors = {}
@@ -42,6 +43,8 @@ def copWin(vertices, arestas, cop, robber):
 
     return flag
 
-print(copWin([0,1,2,3], [(0,1),(1,2),(2,3),(3,0)], 1, 3))
+print(copWin([0,1,2,3], [(0,1),(1,2),(2,3),(3,0)], 1, 3))       # um quadrado, não copwin
 print("\n")
-print(copWin([0,1,2], [(0,1),(1,2),(2,0)], 1, 3))
+print(copWin([0,1,2], [(0,1),(1,2),(2,0)], 1, 3))               # um triangulo, copwin
+print("\n")
+print(copWin([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(3,1)], 1, 3)) #dois triangulos, copwin
