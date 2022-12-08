@@ -89,5 +89,6 @@ def distances(neighbors, source):
     return distance_dict
 
 # print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0)], 1, 3))       # um quadrado, não copwin
-# print(bruteForce([0,1,2], [(0,1),(1,2),(2,0)], 1, 2))               # um triangulo, copwin
-# print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(3,1)], 1, 3)) #dois triangulos, copwin
+print(bruteForce([0,1,2], [(0,1),(1,2),(2,0)], 1, 2))               # um triangulo, copwin
+print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(3,1)], 1, 3)) #dois triangulos, copwin
+print(bruteForce([0,1,2,3,4,5], [(0,1),(1,2),(2,3),(2,5),(3,4),(3,5),(4,5)], 0, 2))

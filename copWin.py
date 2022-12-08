@@ -76,12 +76,11 @@ def copWin(vertices, arestas):
     # implementação do teorema 2.1
     PermutationWrapper(vertices,[],len(vertices),arestas)
 
-PermutationWrapper([0, 1, 2, 3], [], 4, [(0, 1), (0, 2),
-                   (1, 2), (2, 3), (3, 0), (3, 1)])
+# PermutationWrapper([0, 1, 2, 3], [], 4, [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
 # um quadrado, não copwin
-# print(copWin([0, 1, 2, 3], [(0, 1), (1, 2), (2, 3), (3, 0)], 1, 3))
-# print("\n")
-# print(copWin([0, 1, 2], [(0, 1), (1, 2), (2, 0)], 1, 3))               # um triangulo, copwin
+print(copWin([0, 1, 2, 3], [(0, 1), (1, 2), (2, 3), (3, 0)]))
+print("\n")
+print(copWin([0, 1, 2], [(0, 1), (1, 2), (2, 0)]))               # um triangulo, copwin
 # print("\n")
 # dois triangulos, copwin
-#copWin([2, 0, 1, 3], [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
+# copWin([2, 0, 1, 3], [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
