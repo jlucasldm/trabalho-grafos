@@ -3,13 +3,11 @@
 # cop       := inteiro sinalizando um vértice
 # robber    := inteiro sinalizando um vértice
 
-def PermutationWrapper(listV: list, listC: list, n: int, listE) -> bool:
+def PermutationWrapper(listV: list, listC: list, n: int, listE: dict) -> bool:
     if n == 1:
-        print(listC)
-        for v in listC:
-            if NeighbourIntersection(v, listV, listE, len(listV)):
-                print("Resultado okay")
-                return True
+        #print(listC)
+        if TheoremCondition(listE, listC):
+            return True
     for v in listV:
         lista = listC + [v]
         listaaux = listV.copy()
@@ -18,40 +16,39 @@ def PermutationWrapper(listV: list, listC: list, n: int, listE) -> bool:
             return True
 
 
-def NeighbourIntersection(v1: int, listV: list, listE: tuple, n: int) -> bool:
-    pointer: int = 0
-    for i in listV:
-        if i != v1:
-            pointer += 1
-        else:
-            break
+# Operação: Ni(V) = N(v) ^ vj: i <= j <= n
+def NeighbourIntersection(v1: int, v2:int , listV: list, listE: dict) -> list:
+    neighbors_i = listE[v2]
+    conj = []
     for v in listV:
-        if pointer > 0:
-            pointer -= 1
+        if v1 > 0:
+            v1 -= 1
             continue
-        # criando as listas de vizinhos para os vértices vi e vj
-        neighbors_i = listE[v1]
-        neighbors_j = listE[v]
-        # Logica para remoção de elemento reflexivo
-        reAddElement: bool = False
         if v in neighbors_i:
-            neighbors_i.remove(v)
-            reAddElement = True
-        # checagem de condição do teorema
-        print("neighbors[i = ", v1, "]: ", neighbors_i)
-        print("neighbors[j = ", v, "]: ", neighbors_j, "\n")
+            conj.append(v)
+   # print(conj)
+    return conj
 
-        conj = []
-        for x in neighbors_i:
-            if x in neighbors_j:
-                conj.append(x)
 
-        if not (all(x in conj for x in neighbors_i)):
+def SubsetComparison(list1: list, list2: list) -> bool:  # LIST1 IS SUBSET OF LIST2
+    for x in list1:
+        if not x in list2:
             return False
+    return True
 
-        if reAddElement:
-            neighbors_i.append(v)
-            reAddElement = False
+
+def TheoremCondition(listE: dict, listV: list):
+    for v1 in range(0, len(listV)):
+        for v2 in range(v1 + 1, len(listV)):
+            subsetv1 = NeighbourIntersection(
+                v1, listV[v1], listV, listE)
+            subsetv2 = NeighbourIntersection(
+                v1, listV[v2], listV, listE)
+            #print("v1:", listV[v1], "subset", subsetv1)
+            #print("v2:", listV[v2], "subset", subsetv2)
+            if (not SubsetComparison(subsetv1, subsetv2)):
+                #print("Subset falso")
+                return False
     return True
 
 
@@ -71,16 +68,20 @@ def copWin(vertices, arestas):
                     neighbors_i.append(arestas[j][0])
         neighbors_i.sort()
         neighbors.update({i: neighbors_i})
-    print(neighbors)
-
+    #print(neighbors)
     # implementação do teorema 2.1
-    PermutationWrapper(vertices,[],len(vertices),arestas)
+    if PermutationWrapper(vertices, [], len(vertices), neighbors):
+        return "Cop Win"
+    else:
+        return "Robbers Win"
 
 # PermutationWrapper([0, 1, 2, 3], [], 4, [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
+
+
 # um quadrado, não copwin
-print(copWin([0, 1, 2, 3], [(0, 1), (1, 2), (2, 3), (3, 0)]))
-print("\n")
-print(copWin([0, 1, 2], [(0, 1), (1, 2), (2, 0)]))               # um triangulo, copwin
+# print("\n")
+print(copWin([0, 1, 2], [(0, 1), (1, 2), (2, 0), (0,0), (1,1), (2,2)]))               # um triangulo, copwin
 # print("\n")
 # dois triangulos, copwin
-# copWin([2, 0, 1, 3], [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
+print(copWin([0, 1, 2, 3], [(0, 1), (1, 2), (2, 3), (3, 0), (0,0), (1,1), (2,2), (3,3)])) # um quadrado, robbers win
+# PARA CADA V EM LISTVERTORD SE VIZINHOSINTERSECAO RETONRAR VERDADEIRA, A CONDIÇÃO DO TEOREMA E VERDADE
