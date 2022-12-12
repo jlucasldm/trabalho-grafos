@@ -94,7 +94,7 @@ def theoremCondition(listE: dict, listV: list):
     
     for i in range(0, len(listV) - 1):
         for j in range(i + 1, len(listV)):
-            
+            flag = 0
             # Definindo os conjuntos a serem comparados
             subsetv1 = neighbourIntersection(
                 i, listV[i], listV, listE)
