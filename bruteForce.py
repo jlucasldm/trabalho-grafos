@@ -66,7 +66,7 @@ def bruteForce(vertices, arestas, cop, robber):
     # captura.
     while cop != robber:
         neighbors_cop = neighbors[cop]
-        distance_to_robber = distances(neighbors_cop, robber)
+        distance_to_robber = distances(neighbors, robber)
         move_cop = 999999999
         
         # Turno de Cop
@@ -80,7 +80,7 @@ def bruteForce(vertices, arestas, cop, robber):
             return 1
 
         neighbors_robber = neighbors[robber]
-        distance_to_cop = distances(neighbors_robber, cop)
+        distance_to_cop = distances(neighbors, cop)
         move_robber = 0
 
         # Turno de Robber
