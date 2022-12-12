@@ -15,13 +15,14 @@ from queue import Queue
 # A função recebe quatro entardas. Uma lista de inteiros vertices, 
 # representando o conjunto de vértices do grafo, uma lista de tuplas 
 # representando o conjunto de arestas do grafo (onde cada tupla representa
-# um par de vértices), um inteiro cop representando o vértice ocupado por 
-# Cop e um inteiro robber representando o vértice ocupado por Robber.
+# um par de vértices u,v tal que exista uma aresta uv), um inteiro cop 
+# representando o vértice ocupado por Cop e um inteiro robber representando 
+# o vértice ocupado por Robber.
 # 
 # Ao receber as entradas, a função cria um dicionário cujas chaves são os
 # vértices do grafo e os valores são uma lista contendo todos seus vértices
 # adjacentes. O dicionário, portanto, armazena todos os vizinhos de cada
-# vértice v do grafo. O dicionário é atribuído a variábel neighbors.
+# vértice v do grafo. O dicionário é atribuído a variável neighbors.
 # 
 # A função então entra em um laço até que cop == robber, ou seja, que Cop
 # e Robber ocupem o mesmo vértice. Dentro do laço os movimentos dos 
@@ -131,8 +132,8 @@ def distances(neighbors, source):
 
 
 # Entradas teste:
-# 
-# print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0)], 1, 3))                         # um quadrado, não cop-win. o programa rodará indefinifamente
-# print(bruteForce([0,1,2], [(0,1),(1,2),(2,0)], 1, 2))                                 # um triangulo, cop-win
-# print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(3,1)], 1, 3))                   #dois triangulos, cop-win
-# print(bruteForce([0,1,2,3,4,5], [(0,1),(1,2),(2,3),(2,5),(3,4),(3,5),(4,5)], 0, 2))   # um grafo cop-win
+#
+# print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(0,0),(1,1),(2,2),(3,3)]))                                         # um quadrado, não cop-win. o programa rodará indefinifamente
+print(bruteForce([0,1,2], [(0,1),(1,2),(2,0),(0,0),(1,1),(2,2)], 1, 2))                                                   # um triangulo, cop-win
+print(bruteForce([0,1,2,3], [(0,1),(1,2),(2,3),(3,0),(3,1),(0,0),(1,1),(2,2),(3,3)], 1, 3))                               # dois triangulos, cop-win
+print(bruteForce([0,1,2,3,4,5], [(0,1),(1,2),(2,3),(2,5),(3,4),(3,5),(4,5),(0,0),(1,1),(2,2),(3,3),(4,4),(5,5)], 1, 3))   # um grafo cop-win
