@@ -90,8 +90,6 @@ def permutationWrapper(listV: list, listC: list, n: int, listE: dict) -> bool:
 # Caso para todo i exista o j desejado tal que valha a condição do teorema,
 # a função retorna True. Caso contrário, retorna False.
 def theoremCondition(listE: dict, listV: list):
-    flag = 0
-    
     for i in range(0, len(listV) - 1):
         for j in range(i + 1, len(listV)):
             flag = 0
