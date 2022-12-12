@@ -1,7 +1,9 @@
-# vertices  := lista de inteiros [0, ..., n-1]
-# arestas   := lista de tuplas sinalizando conexão estre os vértices
-# cop       := inteiro sinalizando um vértice
-# robber    := inteiro sinalizando um vértice
+# Implementação do Jogo Polícia e Ladrão em Grafos
+# Discentes: Kaio Rodrigo, João Lucas Melo e Thiago Andrade
+# Docente: Roberto Parente
+# Disciplina: Teoria dos Grafos
+# Instituição: Universidade Federal da Bahia
+# Departamento: Ciência da Computação
 
 def PermutationWrapper(listV: list, listC: list, n: int, listE: dict) -> bool:
     if n == 1:
@@ -71,9 +73,9 @@ def copWin(vertices, arestas):
     #print(neighbors)
     # implementação do teorema 2.1
     if PermutationWrapper(vertices, [], len(vertices), neighbors):
-        return "Cop Win"
+        return 1 #Cop Win
     else:
-        return "Robbers Win"
+        return 0 #Robbers Win
 
 # PermutationWrapper([0, 1, 2, 3], [], 4, [(0, 1), (0, 2), (1, 2), (2, 3), (3, 0), (3, 1)])
 
